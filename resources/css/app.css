@@ -2,13 +2,91 @@
 @tailwind components;
 @tailwind utilities;
 
-/* From Uiverse.io by adamgiebl */ 
+/* From Uiverse.io by lucas_5777 */ 
+.bg-boxes {
+  width: 100%;
+  height: 100%;
+  --color: #cccccc;
+  background-color: #f3f3f3;
+  background-image: linear-gradient(
+      0deg,
+      transparent 24%,
+      var(--color) 25%,
+      var(--color) 26%,
+      transparent 27%,
+      transparent 74%,
+      var(--color) 75%,
+      var(--color) 76%,
+      transparent 77%,
+      transparent
+    ),
+    linear-gradient(
+      90deg,
+      transparent 24%,
+      var(--color) 25%,
+      var(--color) 26%,
+      transparent 27%,
+      transparent 74%,
+      var(--color) 75%,
+      var(--color) 76%,
+      transparent 77%,
+      transparent
+    );
+  background-size: 55px 55px;
+}
+
+
+/* From Uiverse.io by chris_6688 */ 
 .bg-grid-dark {
   width: 100%;
   height: 100%;
-  --color: rgba(114, 114, 114, 0.3);
-  background-color: #0d0e0e;
-  background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent),
-      linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%,transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%,transparent);
-  background-size: 55px 55px;
+  background-color: #121212; /* Dark background color */
+  background-image: radial-gradient(
+      circle at 50% 50%,
+      rgba(255, 255, 255, 0.125) 1px,
+      transparent 0
+    ),
+    linear-gradient(rgba(255, 255, 255, 0.067) 1px, transparent 0),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.067) 1px, transparent 0);
+  background-size:
+    40px 40px,
+    20px 20px,
+    20px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(255, 255, 255, 0.03) 10px,
+    rgba(255, 255, 255, 0.03) 20px
+  );
+  z-index: 1;
+  opacity: 0.8;
+}
+
+.container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.07) 1px,
+    transparent 1px
+  );
+  background-size: 60px 60px;
+  z-index: 2;
+  opacity: 0.6;
 }

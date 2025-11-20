@@ -1,4 +1,4 @@
-<span class="font-medium text-xl text-zinc-900 flex items-center gap-2">
+<span class="font-semibold text-xl text-zinc-900 flex items-center gap-2">
     <svg xmlns="http://www.w3.org/2000/svg" class="size-6" fill="currentColor"
         viewBox="0 0 640 640"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
         <path

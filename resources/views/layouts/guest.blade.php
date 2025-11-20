@@ -19,9 +19,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="min-h-screen p-5 bg-zinc-100 text-zinc-900 font-[Geist] antialiased flex items-center justify-center">
+<body class="min-h-screen p-5 bg-boxes text-zinc-900 font-[Geist] antialiased flex items-center justify-center">
 
-    <div class="max-w-5xl w-full rounded-xl overflow-hidden bg-white border border-zinc-300">
+    <div class="max-w-5xl w-full rounded-xl overflow-hidden bg-white border border-zinc-300 shadow-sm z-10">
         <div class="md:flex">
             <!-- left panel -->
             <div class="md:w-1/2 aspect-square bg-zinc-950 bg-grid-dark text-white p-8 flex flex-col justify-between">
@@ -41,7 +41,7 @@
 
 
             <!-- right panel (form) -->
-            <div class="w-1/2 h-full aspect-square flex flex-col justify-center gap-10 p-5 bg-white overflow-hidden rounded-r-xl">
+            <div class="w-1/2 h-full aspect-square flex flex-col justify-center gap-10 p-8 bg-white overflow-hidden rounded-r-xl">
                 <div class="space-y-2">
                     <h2 class="text-3xl font-medium leading-none">
                         Welcome back! 👋
