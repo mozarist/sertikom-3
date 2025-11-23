@@ -19,22 +19,15 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-[geist] text-zinc-900 antialiased">
-    <div class="min-h-screen bg-gray-100">
-        @include('layouts.navigation')
+<body class="font-[geist] bg-zinc-100 text-zinc-900 w-screen min-h-screen antialiased">
+    @include('layouts.navigation')
 
-        <!-- Page Heading -->
-        @isset($header)
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-        @endisset
-
-        <!-- Page Content -->
-        <main>
-            {{ $slot }}
+    <!-- Page Content -->
+    <div class="ps-72">
+        <main class="p-7">
+            <div class="bg-white p-5 w-full h-fit border border-zinc-300 rounded-xl">
+                {{ $slot }}
+            </div>
         </main>
     </div>
 </body>
