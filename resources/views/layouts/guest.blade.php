@@ -24,24 +24,26 @@
     <div class="max-w-5xl w-full rounded-xl overflow-hidden bg-white border border-zinc-300 shadow-sm z-10">
         <div class="md:flex">
             <!-- left panel -->
-            <div class="md:w-1/2 aspect-square bg-zinc-950 bg-grid-dark text-white p-8 flex flex-col justify-between">
+            <div class="md:w-1/2 aspect-square overflow-hidden bg-zinc-950 bg-grid-dark text-white p-8 flex flex-col justify-between">
                 <div class="space-y-2">
-                    <x-application-logo-large-white></x-application-logo-large-white>
+                    <x-application-logo-large-white />
 
                     <p class="text-sm text-zinc-300 max-w-xs">Bangun manajemen data sekolah yang lebih rapi, otomatis,
                         dan terintegrasi.
                     </p>
                 </div>
 
-
-                <div class="text-zinc-300 text-sm">
-                    © Copyright 2025
-                </div>
+                {{-- project made by mozarist --}}
+                    <span class="text-zinc-300 text-sm font-medium">
+                        &copy; {{ date('Y') }} Pendataan siswa. | Project made by <a href="https://github.com/mozarist" target="_blank"
+                            class="bg-gradient-to-tr from-zinc-300 to-emerald-600 inline-block bg-clip-text text-transparent hover:underline decoration-emerald-700">Mozarist</a>
+                    </span>
             </div>
 
 
             <!-- right panel (form) -->
-            <div class="w-1/2 h-full aspect-square flex flex-col justify-center gap-10 p-8 bg-white overflow-hidden rounded-r-xl">
+            <div
+                class="w-1/2 h-full aspect-square flex flex-col justify-center gap-10 p-8 bg-white overflow-hidden rounded-r-xl">
                 <div class="space-y-2">
                     <h2 class="text-3xl font-medium leading-none">
                         Welcome back! 👋

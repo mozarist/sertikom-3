@@ -16,7 +16,7 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check() || Auth::user()->role !== ['master', 'admin']) {
+        if (!Auth::check() || Auth::user()->role !== 'master' && Auth::user()->role !== 'admin') {
             abort(403, 'Hanya admin yang memiliki akses.');
         }
         

@@ -1,4 +1,4 @@
-<nav class="flex flex-col justify-between bg-white border-r border-zinc-300 top-0 fixed z-1 w-72 p-5 h-full">
+<nav class="flex flex-col justify-between bg-white border-r border-zinc-300 top-0 left-0 fixed z-1 w-72 p-5 h-screen">
 
     <div class="space-y-4">
 
@@ -21,7 +21,7 @@
                 <x-nav-label>Data sekolah</x-nav-label>
                 <div class="space-y-2">
 
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('')">
+                    <x-nav-link href="{{ route('tahun_ajar.index') }}" :active="request()->routeIs('tahun_ajar.index')">
                         <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="currentColor"
                             viewBox="0 0 640 640"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                             <path
