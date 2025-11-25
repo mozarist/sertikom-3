@@ -7,7 +7,7 @@
         </div>
 
         <div class="flex flex-col gap-3">
-            <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+            <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard', '/')">
                 <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="currentColor"
                     viewBox="0 0 640 640"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                     <path
@@ -17,9 +17,9 @@
                 {{ __('Dashboard') }}
             </x-nav-link>
 
-            <div class="space-y-1">
+            <div>
                 <x-nav-label>Data sekolah</x-nav-label>
-                <div class="space-y-2">
+                <div class="space-y-1">
 
                     <x-nav-link href="{{ route('tahun_ajar.index') }}" :active="request()->routeIs('tahun_ajar.index')">
                         <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="currentColor"
@@ -31,7 +31,7 @@
                         {{ __('Tahun ajar') }}
                     </x-nav-link>
 
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('')">
+                    <x-nav-link href="{{ route('jurusan.index') }}" :active="request()->routeIs('jurusan.index')">
                         <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="currentColor"
                             viewBox="0 0 640 640"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                             <path
@@ -54,9 +54,9 @@
                 </div>
             </div>
 
-            <div class="space-y-1">
+            <div>
                 <x-nav-label>Manajemen siswa</x-nav-label>
-                <div class="space-y-2">
+                <div class="space-y-1">
 
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('')">
                         <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="currentColor"
@@ -81,9 +81,9 @@
                 </div>
             </div>
 
-            <div class="space-y-1">
+            <div>
                 <x-nav-label>User sistem</x-nav-label>
-                <div class="space-y-2">
+                <div class="space-y-1">
 
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('')">
                         <svg xmlns="http://www.w3.org/2000/svg" class="size-4" fill="currentColor"
@@ -118,19 +118,39 @@
             <span class="text-sm leading-none">{{ Auth::user()->role }}</span>
         </div>
 
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
+        <div x-data="{ open: false }" class="relative">
+            <x-square-primary-button @click="open = true">
+                <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor" viewBox="0 0 640 640">
+                    <path
+                        d="M569 337C578.4 327.6 578.4 312.4 569 303.1L425 159C418.1 152.1 407.8 150.1 398.8 153.8C389.8 157.5 384 166.3 384 176L384 256L272 256C245.5 256 224 277.5 224 304L224 336C224 362.5 245.5 384 272 384L384 384L384 464C384 473.7 389.8 482.5 398.8 486.2C407.8 489.9 418.1 487.9 425 481L569 337zM224 160C241.7 160 256 145.7 256 128C256 110.3 241.7 96 224 96L160 96C107 96 64 139 64 192L64 448C64 501 107 544 160 544L224 544C241.7 544 256 529.7 256 512C256 494.3 241.7 480 224 480L160 480C142.3 480 128 465.7 128 448L128 192C128 174.3 142.3 160 160 160L224 160z" />
+                </svg>
+            </x-square-primary-button>
 
-            <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
-                <x-square-primary-button>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor"
-                        viewBox="0 0 640 640"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
-                        <path
-                            d="M569 337C578.4 327.6 578.4 312.4 569 303.1L425 159C418.1 152.1 407.8 150.1 398.8 153.8C389.8 157.5 384 166.3 384 176L384 256L272 256C245.5 256 224 277.5 224 304L224 336C224 362.5 245.5 384 272 384L384 384L384 464C384 473.7 389.8 482.5 398.8 486.2C407.8 489.9 418.1 487.9 425 481L569 337zM224 160C241.7 160 256 145.7 256 128C256 110.3 241.7 96 224 96L160 96C107 96 64 139 64 192L64 448C64 501 107 544 160 544L224 544C241.7 544 256 529.7 256 512C256 494.3 241.7 480 224 480L160 480C142.3 480 128 465.7 128 448L128 192C128 174.3 142.3 160 160 160L224 160z" />
-                    </svg>
-                </x-square-primary-button>
-            </a>
-        </form>
+            <div x-show="open" x-cloak x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 translate-y-6" x-transition:enter-end="opacity-100 translate-y-0"
+                x-transition:leave="transition ease-in duration-200"
+                x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 translate-y-6"
+                class="absolute bottom-16 -right-2 w-[246px] bg-gradient-to-tr from-zinc-100 to-white border border-zinc-300 shadow-md rounded-xl p-4 z-50"
+                @click.outside="open = false">
+                <p class="mb-4 text-center font-medium">
+                    Yakin ingin keluar?
+                </p>
+
+                <div class="flex items-center justify-center gap-2">
+                    <x-secondary-button class="w-full" @click="open = false">Batal</x-secondary-button>
+
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <a href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                            <x-danger-button class="w-full">Logout</x-danger-button>
+                        </a>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
     </div>
 
 </nav>

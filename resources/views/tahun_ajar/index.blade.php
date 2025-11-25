@@ -55,10 +55,10 @@
 
                                 <div x-show="open" x-cloak
                                     class="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-                                    <div class="bg-white/90 backdrop-blur-sm p-6 border border-zinc-500 rounded-xl">
-                                        <p class="text-red-600 mb-4">Yakin ingin menghapus tahun ajar {{ $x->nama_tahun_ajar }}?</p>
+                                    <div @click.outside="open = false" class="bg-white/90 backdrop-blur-sm p-6 border border-zinc-300 rounded-xl">
+                                        <p class="text-red-600 mb-4 text-center">Yakin ingin menghapus tahun ajar {{ $x->nama_tahun_ajar }}?</p>
 
-                                        <div @click.outside="open = false" class="flex items-center justify-center gap-2">
+                                        <div class="flex items-center justify-center gap-2">
                                             <x-secondary-button class="w-full" @click="open = false">Batal</x-secondary-button>
 
                                             <form action="{{ route('tahun_ajar.destroy', $x->id) }}" method="POST" class="w-full">

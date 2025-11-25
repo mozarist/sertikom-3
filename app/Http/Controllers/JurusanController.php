@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\jurusan;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class JurusanController extends Controller
 {
@@ -12,7 +13,8 @@ class JurusanController extends Controller
      */
     public function index()
     {
-        return view('jurusan.index');
+        $jurusan = jurusan::orderBy('kode_jurusan', 'desc')->paginate(10);
+        return view('jurusan.index', compact('jurusan'));
     }
 
     /**
@@ -20,7 +22,7 @@ class JurusanController extends Controller
      */
     public function create()
     {
-        //
+        return view('jurusan.create');
     }
 
     /**
@@ -28,7 +30,14 @@ class JurusanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'kode_jurusan' => 'required|string|unique:jurusans,kode_jurusan',
+            'nama_jurusan' => 'required|string',
+        ]);
+
+        jurusan::create($validatedData);
+
+        return redirect()->route('jurusan.index');
     }
 
     /**
@@ -42,9 +51,10 @@ class JurusanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(jurusan $jurusan)
+    public function edit(string $id)
     {
-        //
+        $jurusan = jurusan::findOrFail($id);
+        return view('jurusan.edit', compact('jurusan'));
     }
 
     /**
@@ -52,7 +62,14 @@ class JurusanController extends Controller
      */
     public function update(Request $request, jurusan $jurusan)
     {
-        //
+        $validatedData = $request->validate([
+            'kode_jurusan' => ['required', 'string', Rule::unique('jurusans', 'kode_jurusan')->ignore($jurusan->id),],
+            'nama_jurusan' => 'required|string',
+        ]);
+
+        $jurusan->update($validatedData);
+
+        return redirect()->route('jurusan.index');
     }
 
     /**
@@ -60,6 +77,8 @@ class JurusanController extends Controller
      */
     public function destroy(jurusan $jurusan)
     {
-        //
+        $jurusan->delete();
+
+        return redirect()->route('jurusan.index');
     }
 }

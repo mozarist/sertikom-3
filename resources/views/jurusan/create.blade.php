@@ -2,7 +2,7 @@
 
     <div class="flex justify-between items-center gap-5 pb-4 border-b border-zinc-300">
 
-        <h2 class="text-2xl font-medium">Edit jurusan {{ $jurusan->nama_jurusan }}</h2>
+        <h2 class="text-2xl font-medium">Tambah jurusan</h2>
 
         <x-secondary-button onclick="window.history.back()">
             <svg xmlns="http://www.w3.org/2000/svg" class="size-5" fill="currentColor"
@@ -16,15 +16,14 @@
 
     </div>
 
-    <form action="{{ route('jurusan.update', $jurusan->id) }}" method="POST" enctype="multipart/form-data"
+    <form action="{{ route('jurusan.store') }}" method="POST" enctype="multipart/form-data"
         class="space-y-4 w-full self-center p-5 rounded-2xl border border-zinc-300">
         @csrf
-        @method('PUT')
 
         <div class="w-full space-y-4">
             <label class="block space-y-1">
                 <x-input-label>Kode jurusan*</x-input-label>
-                <x-text-input type="number" min="1" name="kode_jurusan" value="{{ $jurusan->kode_jurusan }}"
+                <x-text-input type="number" min="1" name="kode_jurusan"
                     placeholder="Masukkan kode jurusan" class="w-full"></x-text-input>
 
                 @error('kode_jurusan')
@@ -34,7 +33,7 @@
 
             <label class="block space-y-1">
                 <x-input-label>Nama jurusan*</x-input-label>
-                <x-text-input name="nama_jurusan" placeholder="Masukkan nama jurusan" value="{{ $jurusan->nama_jurusan }}"
+                <x-text-input name="nama_jurusan" placeholder="Masukkan nama jurusan"
                     class="w-full"></x-text-input>
 
                 @error('nama_jurusan')

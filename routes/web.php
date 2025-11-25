@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TahunAjarController;
 use Illuminate\Support\Facades\Route;
@@ -13,7 +14,11 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', 'verified', 'isAdmin'])->group( function() {
-    Route::resource('tahun_ajar', TahunAjarController::class);
+    Route::resource('tahun_ajar', TahunAjarController::class)->except(['tahun_ajar.index']);
+});
+
+Route::middleware(['auth', 'verified', 'isAdmin'])->group( function() {
+    Route::resource('jurusan', JurusanController::class)->except(['jurusan.index']);
 });
 
 Route::middleware('auth')->group(function () {

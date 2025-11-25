@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\tahun_ajar;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class TahunAjarController extends Controller
