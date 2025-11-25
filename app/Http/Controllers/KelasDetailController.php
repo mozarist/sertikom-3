@@ -12,7 +12,7 @@ class KelasDetailController extends Controller
      */
     public function index()
     {
-        //
+        return view('kelas_detail.index');
     }
 
     /**

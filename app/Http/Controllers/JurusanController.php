@@ -13,7 +13,7 @@ class JurusanController extends Controller
      */
     public function index()
     {
-        $jurusan = jurusan::orderBy('kode_jurusan', 'desc')->paginate(10);
+        $jurusan = jurusan::orderBy('kode_jurusan', 'asc')->paginate(10);
         return view('jurusan.index', compact('jurusan'));
     }
 
@@ -32,7 +32,7 @@ class JurusanController extends Controller
     {
         $validatedData = $request->validate([
             'kode_jurusan' => 'required|string|unique:jurusans,kode_jurusan',
-            'nama_jurusan' => 'required|string',
+            'nama_jurusan' => 'required|string|unique:jurusans,nama_jurusan',
         ]);
 
         jurusan::create($validatedData);

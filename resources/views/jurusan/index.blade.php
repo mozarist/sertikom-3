@@ -15,23 +15,35 @@
         <table class="w-full text-left table-auto">
             <thead>
                 <tr class="text-white border-b border-zinc-300">
-                    <th class="w-2/5 p-4 bg-zinc-900 rounded-tl-xl">
+                    <th class="w-1/3 p-4 bg-zinc-900 rounded-tl-xl">
                         <p class="block font-light text-sm antialiased leading-none">
                             Kode jurusan
                         </p>
                     </th>
-                    <th class="w-4/5 p-4 bg-zinc-900">
+                    <th class="w-2/3 p-4 bg-zinc-900">
                         <p class="block font-light text-sm antialiased leading-none">
                             Nama jurusan
                         </p>
                     </th>
-                    <th class="w-2/5 p-4 bg-zinc-900 rounded-tr-xl">
+                    <th class="w-1/3 p-4 bg-zinc-900 rounded-tr-xl">
                         <p class="block font-light text-sm text-center antialiased leading-none">
                             Aksi
                         </p>
                     </th>
                 </tr>
             </thead>
+
+            @if ($jurusan->isEmpty())
+                <tbody>
+                    <tr>
+                        <td colspan="3" class="px-4 py-6 text-start">
+                            <p class="block font-sans text-sm antialiased font-normal leading-normal text-zinc-500">
+                                Tidak ada data jurusan tersedia.
+                            </p>
+                        </td>
+                    </tr>
+                </tbody>
+            @else
             <tbody>
                 @foreach ($jurusan as $x)
                     <tr class="border-b border-zinc-300">
@@ -75,11 +87,12 @@
                                 </div>
                             </div>
 
-
                         </td>
                     </tr>
                 @endforeach
             </tbody>
+            @endif            
+
         </table>
     </div>
 
