@@ -58,7 +58,7 @@ class KelasController extends Controller
     {
         $kelas = kelas::findOrFail($id);
         $jurusan = jurusan::all();
-        return view('kelas.edit', compact('kelas'));
+        return view('kelas.edit', compact('kelas', 'jurusan'));
     }
 
     /**

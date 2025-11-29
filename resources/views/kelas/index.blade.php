@@ -21,12 +21,12 @@
                         </p>
                     </th>
                     <th class="w-1/4 p-4 bg-zinc-900">
-                        <p class="block font-light text-sm antialiased leading-none">
+                        <p class="block font-light text-sm text-center antialiased leading-none">
                             Level kelas
                         </p>
                     </th>
-                    <th class="w-1/4 p-4 bg-zinc-900">
-                        <p class="block font-light text-sm antialiased leading-none">
+                    <th class="w-2/4 p-4 bg-zinc-900">
+                        <p class="block font-light text-sm text-center antialiased leading-none">
                             Jurusan
                         </p>
                     </th>
@@ -59,19 +59,19 @@
                             </td>
 
                             <td class="px-4 py-2">
-                                <p class="block font-sans text-sm antialiased font-normal leading-normal">
+                                <p class="block font-sans text-sm text-center antialiased font-normal leading-normal">
                                     {{ $x->level_kelas }}
                                 </p>
                             </td>
 
                             <td class="px-4 py-2">
-                                <p class="block font-sans text-sm antialiased font-normal leading-normal">
-                                    {{ $x->nama_jurusan }}
+                                <p class="block font-sans text-sm text-center antialiased font-normal leading-normal">
+                                    {{ $x->jurusan->nama_jurusan }}
                                 </p>
                             </td>
 
                             <td class="flex items-center justify-center gap-2 px-4 py-2">
-                                <a href="{{ route('jurusan.edit', $x->id) }}">
+                                <a href="{{ route('kelas.edit', $x->id) }}">
                                     <x-primary-button>Edit</x-primary-button>
                                 </a>
 
@@ -82,14 +82,14 @@
                                         class="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm">
                                         <div @click.outside="open = false"
                                             class="bg-white/90 backdrop-blur-sm p-6 border border-zinc-300 rounded-xl">
-                                            <p class="text-red-600 mb-4 text-center">Yakin ingin menghapus jurusan
-                                                {{ $x->nama_jurusan }}?</p>
+                                            <p class="text-red-600 mb-4 text-center">Yakin ingin menghapus kelas
+                                                {{ $x->nama_kelas }}?</p>
 
                                             <div class="flex items-center justify-center gap-2">
                                                 <x-secondary-button class="w-full"
                                                     @click="open = false">Batal</x-secondary-button>
 
-                                                <form action="{{ route('jurusan.destroy', $x->id) }}" method="POST"
+                                                <form action="{{ route('kelas.destroy', $x->id) }}" method="POST"
                                                     class="w-full">
                                                     @csrf
                                                     @method('DELETE')

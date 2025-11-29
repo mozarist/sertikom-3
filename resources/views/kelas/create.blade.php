@@ -58,7 +58,7 @@
         </div>
 
         <div class="flex items-center justify-start gap-2 md:pt-2">
-            <x-primary-button>Tambah jurusan</x-primary-button>
+            <x-primary-button>Tambah kelas</x-primary-button>
         </div>
     </form>
 
