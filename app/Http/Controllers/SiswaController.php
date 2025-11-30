@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\jurusan;
+use App\Models\kelas;
 use App\Models\siswa;
+use App\Models\tahun_ajar;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class SiswaController extends Controller
 {
@@ -12,8 +16,8 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $siswa = siswa::orderBy('nisn')
-        return view('siswa.index');
+        $siswa = siswa::orderBy('nisn', 'asc')->paginate(10);
+        return view('siswa.index', compact('siswa'));
     }
 
     /**
@@ -21,7 +25,10 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        //
+        $tahun_ajar = tahun_ajar::all();
+        $jurusan = jurusan::all();
+        $kelas = kelas::all();
+        return view('siswa.create', compact('jurusan', 'kelas', 'tahun_ajar'));
     }
 
     /**
@@ -29,36 +36,41 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = $request->validate([
-        'nisn' => ['required', 'string', 'max:20', 'unique:siswas,nisn'],
-        'nama_lengkap' => ['required', 'string', 'max:255'],
-        'jenis_kelamin' => ['required', 'in:laki-laki,perempuan'],
-        'tanggal_lahir' => ['required', 'date'],
-        'alamat' => ['required', 'string'],
-        'jurusan_id' => ['required', 'exists:jurusans,id'],
-        'kelas_id' => ['required', 'exists:kelas,id'],
-        'tahun_ajar_id' => ['required', 'exists:tahun_ajars,id'],
-    ]);
+        $validatedData = $request->validate([
+            'nisn' => 'required|string|min:10|max:10|unique:siswas,nisn',
+            'nama_lengkap' => 'required|string|max:255',
+            'jenis_kelamin' => 'required|in:laki-laki,perempuan',
+            'tanggal_lahir' => 'required|date',
+            'alamat' => 'required|string',
+            'jurusan_id' => 'required|exists:jurusans,id',
+            'kelas_id' => 'required|exists:kelas,id',
+            'tahun_ajar_id' => 'required|exists:tahun_ajars,id',
+        ]);
 
-    Siswa::create($validated);
+        siswa::create($validatedData);
 
-    return redirect()->route('siswa.index');
+        return redirect()->route('siswa.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(siswa $siswa)
+    public function show(string $id)
     {
-        //
+        $siswa = siswa::findOrFail($id);
+        return view('siswa.show', compact('siswa'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(siswa $siswa)
+    public function edit(string $id)
     {
-        //
+        $siswa = siswa::findOrFail($id);
+        $tahun_ajar = tahun_ajar::all();
+        $jurusan = jurusan::all();
+        $kelas = kelas::all();
+        return view('siswa.edit', compact('siswa', 'jurusan', 'kelas', 'tahun_ajar'));
     }
 
     /**
@@ -66,7 +78,20 @@ class SiswaController extends Controller
      */
     public function update(Request $request, siswa $siswa)
     {
-        //
+        $validatedData = $request->validate([
+            'nisn' => ['required', 'string', 'min:10', 'max:10', Rule::unique('siswas', 'nisn')->ignore($siswa->id),],
+            'nama_lengkap' => 'required|string|max:255',
+            'jenis_kelamin' => 'required|in:laki-laki,perempuan',
+            'tanggal_lahir' => 'required|date',
+            'alamat' => 'required|string',
+            'jurusan_id' => 'required|exists:jurusans,id',
+            'kelas_id' => 'required|exists:kelas,id',
+            'tahun_ajar_id' => 'required|exists:tahun_ajars,id',
+        ]);
+
+        $siswa->update($validatedData);
+
+        return redirect()->route('siswa.index');
     }
 
     /**
@@ -74,6 +99,8 @@ class SiswaController extends Controller
      */
     public function destroy(siswa $siswa)
     {
-        //
+        $siswa->delete();
+
+        return redirect()->route('siswa.index');
     }
 }

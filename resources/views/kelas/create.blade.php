@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <div class="flex justify-between items-center gap-5 pb-4 border-b border-zinc-300">
+    <x-header>
 
         <h2 class="text-2xl font-medium">Tambah kelas</h2>
 
@@ -14,7 +14,7 @@
             Kembali
         </x-secondary-button>
 
-    </div>
+    </x-header>
 
     <form action="{{ route('kelas.store') }}" method="POST" enctype="multipart/form-data"
         class="space-y-4 w-full self-center p-5 rounded-2xl border border-zinc-300">
@@ -33,8 +33,8 @@
 
             <label class="block space-y-1">
                 <x-input-label>Level kelas*</x-input-label>
-                <x-text-input type="number" min="1" max="12" name="level_kelas"
-                    placeholder="Masukkan level kelas" class="w-full"></x-text-input>
+                <x-text-input type="number" min="1" max="12" name="level_kelas" placeholder="Masukkan level kelas"
+                    class="w-full"></x-text-input>
 
                 @error('level_kelas')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -50,7 +50,7 @@
                     @endforeach
                 </x-select-input>
 
-                @error('level_kelas')
+                @error('jurusan_id')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
                 @enderror
             </label>

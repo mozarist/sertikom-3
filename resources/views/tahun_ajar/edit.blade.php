@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <div class="flex justify-between items-center gap-5 pb-4 border-b border-zinc-300">
+    <x-header>
 
         <h2 class="text-2xl font-medium">
             Edit tahun ajar {{ $tahun_ajar->nama_tahun_ajar }}
@@ -16,7 +16,7 @@
             Kembali
         </x-secondary-button>
 
-    </div>
+    </x-header>
 
     <form action="{{ route('tahun_ajar.update', $tahun_ajar->id) }}" method="POST" enctype="multipart/form-data"
         class="space-y-4 w-full self-center p-5 rounded-2xl border border-zinc-300">
@@ -35,7 +35,8 @@
 
             <label class="block space-y-1">
                 <x-input-label>Tahun ajar*</x-input-label>
-                <x-text-input name="nama_tahun_ajar"  value="{{ $tahun_ajar->nama_tahun_ajar }}" placeholder="Masukkan nama tahun ajar" class="w-full" />
+                <x-text-input name="nama_tahun_ajar" value="{{ $tahun_ajar->nama_tahun_ajar }}"
+                    placeholder="Masukkan nama tahun ajar" class="w-full" />
                 @error('nama_tahun_ajar')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
                 @enderror

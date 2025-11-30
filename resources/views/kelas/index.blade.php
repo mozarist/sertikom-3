@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <div class="flex justify-between items-center gap-5 pb-4 border-b border-zinc-300">
+    <x-header>
 
         <h2 class="text-2xl font-medium">Daftar kelas</h2>
 
@@ -8,7 +8,7 @@
             <x-primary-button>Tambah kelas</x-primary-button>
         </a>
 
-    </div>
+    </x-header>
 
     <div
         class="relative flex flex-col w-full h-full text-gray-700 bg-white border border-zinc-300 rounded-xl overflow-hidden">

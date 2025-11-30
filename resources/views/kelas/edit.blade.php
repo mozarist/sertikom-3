@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <div class="flex justify-between items-center gap-5 pb-4 border-b border-zinc-300">
+    <x-header>
 
         <h2 class="text-2xl font-medium">Edit kelas</h2>
 
@@ -14,7 +14,7 @@
             Kembali
         </x-secondary-button>
 
-    </div>
+    </x-header>
 
     <form action="{{ route('kelas.update', $kelas->id) }}" method="POST" enctype="multipart/form-data"
         class="space-y-4 w-full self-center p-5 rounded-2xl border border-zinc-300">
@@ -25,7 +25,8 @@
 
             <label class="block space-y-1">
                 <x-input-label>Nama kelas*</x-input-label>
-                <x-text-input name="nama_kelas" placeholder="Masukkan nama kelas" value="{{ $kelas->nama_kelas }}" class="w-full"></x-text-input>
+                <x-text-input name="nama_kelas" placeholder="Masukkan nama kelas" value="{{ $kelas->nama_kelas }}"
+                    class="w-full"></x-text-input>
 
                 @error('nama_kelas')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
@@ -46,14 +47,13 @@
                 <x-input-label>Jurusan*</x-input-label>
                 <x-select-input name="jurusan_id" class="w-full" required>
                     @foreach ($jurusan as $x)
-                        <option value="{{ $x->id }}" 
-                            {{ $x->id == $kelas->jurusan_id ? 'selected' : '' }}>
+                        <option value="{{ $x->id }}" {{ $x->id == $kelas->jurusan_id ? 'selected' : '' }}>
                             {{ $x->nama_jurusan }}
                         </option>
                     @endforeach
                 </x-select-input>
 
-                @error('level_kelas')
+                @error('jurusan_id')
                     <p class="text-red-500 text-sm">{{ $message }}</p>
                 @enderror
             </label>

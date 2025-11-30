@@ -33,7 +33,7 @@ class KelasController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'nama_kelas' => 'required|string|unique:kelas,nama_kelas',
+            'nama_kelas' => 'required|string',
             'level_kelas' => 'required|integer|min:1|max:12',
             'jurusan_id' => 'required|exists:jurusans,id',
         ]);
@@ -67,7 +67,7 @@ class KelasController extends Controller
     public function update(Request $request, kelas $kelas)
     {
         $validatedData = $request->validate([
-            'nama_kelas' => ['required', 'string', Rule::unique('kelas', 'nama_kelas')->ignore($kelas->id),],
+            'nama_kelas' => 'required|string',
             'level_kelas' => 'required|integer|min:1|max:12',
             'jurusan_id' => 'required|exists:jurusans,id',
         ]);

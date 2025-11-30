@@ -1,6 +1,6 @@
 <x-app-layout>
 
-    <div class="flex justify-between items-center gap-5 pb-4 border-b border-zinc-300">
+    <x-header>
 
         <h2 class="text-2xl font-medium">Edit jurusan {{ $jurusan->nama_jurusan }}</h2>
 
@@ -14,7 +14,7 @@
             Kembali
         </x-secondary-button>
 
-    </div>
+    </x-header>
 
     <form action="{{ route('jurusan.update', $jurusan->id) }}" method="POST" enctype="multipart/form-data"
         class="space-y-4 w-full self-center p-5 rounded-2xl border border-zinc-300">
