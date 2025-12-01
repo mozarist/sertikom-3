@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\jurusan;
 use App\Models\kelas;
+use App\Models\kelas_detail;
 use App\Models\siswa;
 use App\Models\tahun_ajar;
 use Illuminate\Http\Request;
@@ -47,7 +48,14 @@ class SiswaController extends Controller
             'tahun_ajar_id' => 'required|exists:tahun_ajars,id',
         ]);
 
-        siswa::create($validatedData);
+        $siswa = siswa::create($validatedData);
+
+        kelas_detail::create([
+            'siswa_id' => $siswa->id,
+            'kelas_id' => $validatedData['kelas_id'],
+            'tahun_ajar_id' => $validatedData['tahun_ajar_id'],
+            'status' => 'aktif',
+        ]);
 
         return redirect()->route('siswa.index');
     }
@@ -58,7 +66,10 @@ class SiswaController extends Controller
     public function show(string $id)
     {
         $siswa = siswa::findOrFail($id);
-        return view('siswa.show', compact('siswa'));
+        $kelas = kelas::all();
+        $tahun_ajar = tahun_ajar::all();
+        $kelas_detail = kelas_detail::where('siswa_id', $siswa->id)->with('kelas', 'tahun_ajar')->orderBy('tahun_ajar_id', 'desc')->get();
+        return view('siswa.show', compact('siswa', 'kelas', 'tahun_ajar', 'kelas_detail'));
     }
 
     /**
@@ -92,6 +103,33 @@ class SiswaController extends Controller
         $siswa->update($validatedData);
 
         return redirect()->route('siswa.index');
+    }
+
+    /**
+     * Menangani kenaikan kelas siswa.
+     */
+    public function naikKelas(Request $request, siswa $siswa)
+    {
+        $validatedData = $request->validate([
+            'kelas_id' => 'required|exists:kelas,id',
+            'tahun_ajar_id' => 'required|exists:tahun_ajars,id',
+        ]);
+
+        $siswa->kelas_details()->where('status', 'aktif')->update(['status' => 'nonaktif']);
+
+        kelas_detail::create([
+            'siswa_id' => $siswa->id,
+            'kelas_id' => $validatedData['kelas_id'],
+            'tahun_ajar_id' => $validatedData['tahun_ajar_id'],
+            'status' => 'aktif',
+        ]);
+
+        $siswa->update([
+            'kelas_id' => $validatedData['kelas_id'],
+            'tahun_ajar_id' => $validatedData['tahun_ajar_id'],
+        ]);
+
+        return redirect()->route('siswa.show', $siswa->id);
     }
 
     /**
