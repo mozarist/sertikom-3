@@ -18,16 +18,54 @@
 
     {{-- finish later.. --}}
 
-    <div class="grid grid-cols-3 gap-5 h-44">
-        <div class="bg-zinc-100 w-full h-full rounded-2xl">
-            {{-- skeleton --}}
-        </div>
-        <div class="bg-zinc-100 w-full h-full rounded-2xl">
-            {{-- skeleton --}}
-        </div>
-        <div class="bg-zinc-100 w-full h-full rounded-2xl">
-            {{-- skeleton --}}
-        </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-5 h-fit">
+        <x-card>
+            <div class="space-y-2">
+                <span class="text-5xl font-normal leading-none">
+                    3
+                </span>
+
+                <h4 class="text-base font-normal leading-none">
+                    Jumlah tahun ajar
+                </h4>
+            </div>
+        </x-card>
+
+        <x-card>
+            <div class="space-y-2">
+                <span class="text-5xl font-normal leading-none">
+                    3
+                </span>
+
+                <h4 class="text-base font-normal leading-none">
+                    Jumlah jurusan
+                </h4>
+            </div>
+        </x-card>
+
+        <x-card>
+            <div class="space-y-2">
+                <span class="text-5xl font-normal leading-none">
+                    10
+                </span>
+
+                <h4 class="text-base font-normal leading-none">
+                    Jumlah kelas
+                </h4>
+            </div>
+        </x-card>
+
+        <x-card>
+            <div class="space-y-2">
+                <span class="text-5xl font-normal leading-none">
+                    67
+                </span>
+
+                <h4 class="text-base font-normal leading-none">
+                    Jumlah siswa
+                </h4>
+            </div>
+        </x-card>
     </div>
 
     <div class="flex gap-5">

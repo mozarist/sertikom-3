@@ -3,8 +3,8 @@
     <x-header>
         <h2 class="text-2xl font-medium">Detail data siswa</h2>
 
-        
-        <div class="flex items-center justify-start gap-2 md:pt-2">
+
+        <div class="flex items-center justify-start gap-2">
 
             <a href="{{ route('siswa.edit', $siswa->id) }}">
                 <x-primary-button>Edit data siswa</x-primary-button>
@@ -38,7 +38,7 @@
 
     <div class="flex flex-col gap-4 w-full self-center p-5 rounded-2xl border border-zinc-300">
 
-        <h4 class="text-3xl font-medium capitalize leading-none pb-2 border-b border-zinc-300">
+        <h4 class="text-3xl font-medium capitalize leading-none">
             {{ $siswa->nama_lengkap }}
         </h4>
 
@@ -79,14 +79,14 @@
     <div class="flex flex-col md:flex-row gap-5 justify-start items-start w-full">
         <div class="flex flex-col gap-4 w-full p-5 rounded-2xl border border-zinc-300">
 
-            <h4 class="text-3xl font-medium leading-none pb-2 border-b border-zinc-300">
+            <h4 class="text-3xl font-medium leading-none">
                 Riwayat ajar
             </h4>
 
             <div class="flex flex-col divide-y divide-zinc-300">
                 @foreach ($kelas_detail as $x)
 
-                    <div class="py-4 space-y-1 rounded-xl">
+                    <div class="py-3 space-y-1 rounded-xl">
 
                         <p class="pt-1 leading-none">
                             Tahun ajar: {{ $x->tahun_ajar->nama_tahun_ajar }}
@@ -98,12 +98,12 @@
 
                         <p class="pt-1 leading-none">
                             Status: <span class="capitalize
-                                        @if ($x->status == 'aktif')
-                                            text-green-600
-                                        @else
-                                            text-red-600
-                                        @endif
-                                        ">{{ $x->status }}</span>
+                                            @if ($x->status == 'aktif')
+                                                text-green-600
+                                            @else
+                                                text-red-600
+                                            @endif
+                                            ">{{ $x->status }}</span>
                         </p>
 
                     </div>
@@ -117,7 +117,7 @@
             class="flex flex-col gap-4 w-full p-5 rounded-2xl border border-zinc-300">
             @csrf
 
-            <h4 class="text-3xl font-medium capitalize leading-none pb-2 border-b border-zinc-300">
+            <h4 class="text-3xl font-medium capitalize leading-none pb-2">
                 Form kenaikan kelas
             </h4>
 
@@ -154,7 +154,25 @@
             </div>
 
             <div class="flex items-center justify-start gap-2 md:pt-2">
-                <x-primary-button>Naik kelas</x-primary-button>
+                <div x-data="{ open: false }">
+                    <x-primary-button type="button" @click="open = true">Naik kelas</x-primary-button>
+
+                    <div x-show="open" x-cloak
+                        class="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+                        <div @click.outside="open = false"
+                            class="bg-white/90 backdrop-blur-sm max-w-sm w-full p-6 border border-zinc-300 rounded-xl">
+                            <p class="mb-4 text-center">Naikkan kelas siswa?
+                            </p>
+
+                            <div class="flex items-center justify-center gap-2">
+                                <x-secondary-button class="w-full" @click="open = false">Batal</x-secondary-button>
+
+                                <x-primary-button class="w-full">
+                                    Ya
+                                </x-primary-button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </form>
     </div>

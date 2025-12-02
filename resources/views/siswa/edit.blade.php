@@ -56,7 +56,7 @@
 
             <label class="block space-y-1">
                 <x-input-label>Tanggal lahir*</x-input-label>
-                <x-text-input type="date" name="tanggal_lahir" class="w-full"></x-text-input>
+                <x-text-input type="date" name="tanggal_lahir" value="{{ old('tanggal_lahir', $siswa->tanggal_lahir ) }}" class="w-full"></x-text-input>
 
                 @error('tanggal_lahir')
                     <p class="text-red-500 text-sm">{{ $message }}</p>

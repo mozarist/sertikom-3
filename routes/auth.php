@@ -54,3 +54,8 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 });
+
+Route::middleware(['auth', 'verified', 'isAdmin'])->group(function () {
+    Route::delete('/users/{user}/confirm-delete', [RegisteredUserController::class, 'confirmDelete'])
+        ->name('users.confirmDelete');
+});
