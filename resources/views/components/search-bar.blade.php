@@ -1,6 +1,5 @@
-<div {{ $attributes->merge(['class' => 'relative text-zinc-600 hidden md:block min-w-96']) }}>
-    <input type="search" name="search" placeholder="{{ $slot }}"
-        class="bg-white w-full px-5 pr-10 py-2 rounded-lg text-sm shadow-sm focus:outline-none focus:ring-0 border-zinc-300 focus:border-zinc-500">
+<div>
+    <input type="text" {{ $attributes->merge(['class' => 'relative text-zinc-600 block min-w-60 bg-white w-full px-5 pr-10 py-2 rounded-lg text-sm shadow-sm focus:outline-none focus:ring-0 border-zinc-300 focus:border-zinc-500']) }}>
 
     <button type="submit" class="absolute right-0 top-0 mt-3 mr-4">
         <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"

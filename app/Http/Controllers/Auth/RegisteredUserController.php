@@ -17,9 +17,9 @@ class RegisteredUserController extends Controller
     public function index(): View
     {
         $users = User::orderBy('name', 'asc')->paginate(10);
-        $master = User::where('role', 'master')->get();
-        $admin = User::where('role', 'admin')->get();
-        $guru = User::where('role', 'guru')->get();
+        $master = User::where('role', 'master')->paginate(9);
+        $admin = User::where('role', 'admin')->paginate(9);
+        $guru = User::where('role', 'guru')->paginate(9);
         return view('user.index', compact('users', 'master', 'admin', 'guru'));
     }
 

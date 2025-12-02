@@ -15,10 +15,39 @@ class SiswaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $siswa = siswa::orderBy('nisn', 'asc')->paginate(10);
-        return view('siswa.index', compact('siswa'));
+        $query = siswa::query();
+
+        // Search by nama lengkap / NISN
+        if ($request->search) {
+            $query->where(function ($q) use ($request) {
+                $q->where('nama_lengkap', 'like', '%' . $request->search . '%')
+                    ->orWhere('nisn', 'like', '%' . $request->search . '%');
+            });
+        }
+
+        // Filter jurusan
+        if ($request->jurusan) {
+            $query->where('jurusan_id', $request->jurusan);
+        }
+
+        // Filter kelas
+        if ($request->kelas) {
+            $query->where('kelas_id', $request->kelas);
+        }
+
+        // Filter tahun ajar
+        if ($request->tahun_ajar) {
+            $query->where('tahun_ajar_id', $request->tahun_ajar);
+        }
+
+        $jurusan = jurusan::all();
+        $kelas = kelas::all();
+        $tahun_ajar = tahun_ajar::all();
+        
+        $siswa = $query->orderBy('nisn', 'asc')->paginate(10);
+        return view('siswa.index', compact('siswa', 'jurusan', 'kelas', 'tahun_ajar'));
     }
 
     /**

@@ -43,7 +43,8 @@
                         </div>
 
                         <div class="flex justify-between items-end gap-4">
-                            <p class="bg-gradient-to-tr from-zinc-900 to-emerald-800 bg-clip-text w-fit text-transparent capitalize leading-none">
+                            <p
+                                class="bg-gradient-to-tr from-zinc-900 to-emerald-800 bg-clip-text w-fit text-transparent capitalize leading-none">
                                 {{ $x->role }}
                             </p>
 
@@ -63,6 +64,8 @@
                 @endforeach
             </div>
         @endif
+
+        {{$master->links()}}
     </div>
 
     <div class="space-y-2 pt-4 border-t border-zinc-300">
@@ -98,7 +101,8 @@
                         </div>
 
                         <div class="flex justify-between items-end gap-4">
-                            <p class="bg-gradient-to-tr from-zinc-900 to-emerald-800 bg-clip-text w-fit text-transparent capitalize leading-none">
+                            <p
+                                class="bg-gradient-to-tr from-zinc-900 to-emerald-800 bg-clip-text w-fit text-transparent capitalize leading-none">
                                 {{ $x->role }}
                             </p>
 
@@ -118,6 +122,8 @@
                 @endforeach
             </div>
         @endif
+
+        {{$admin->links()}}
     </div>
 
     <div class="space-y-2 pt-4 border-t border-zinc-300">
@@ -153,7 +159,8 @@
                         </div>
 
                         <div class="flex justify-between items-end gap-4">
-                            <p class="bg-gradient-to-tr from-zinc-900 to-emerald-800 bg-clip-text w-fit text-transparent capitalize leading-none">
+                            <p
+                                class="bg-gradient-to-tr from-zinc-900 to-emerald-800 bg-clip-text w-fit text-transparent capitalize leading-none">
                                 {{ $x->role }}
                             </p>
 
@@ -173,8 +180,8 @@
                 @endforeach
             </div>
         @endif
-    </div>
 
-    {{ $users->links() }}
+        {{$guru->links()}}
+    </div>
 
 </x-app-layout>

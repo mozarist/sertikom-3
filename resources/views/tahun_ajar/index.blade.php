@@ -15,17 +15,22 @@
         <table class="w-full text-left table-auto">
             <thead>
                 <tr class="text-white border-b border-zinc-300">
-                    <th class="w-1/3 p-4 bg-zinc-900 rounded-tl-xl">
+                    <th class="w-fit p-4 bg-zinc-900 rounded-tl-xl">
                         <p class="block font-light text-sm antialiased leading-none">
                             Kode tahun ajar
                         </p>
                     </th>
-                    <th class="w-2/3 p-4 bg-zinc-900">
+                    <th class="w-fit p-4 bg-zinc-900">
                         <p class="block font-light text-sm antialiased leading-none">
                             Tahun ajar
                         </p>
                     </th>
-                    <th class="w-1/3 p-4 bg-zinc-900 rounded-tr-xl">
+                    <th class="w-fit text-center p-4 bg-zinc-900">
+                        <p class="block font-light text-sm antialiased leading-none">
+                            Jumlah siswa
+                        </p>
+                    </th>
+                    <th class="w-fit p-4 bg-zinc-900 rounded-tr-xl">
                         <p class="block font-light text-sm text-center antialiased leading-none">
                             Aksi
                         </p>
@@ -57,6 +62,11 @@
                                     {{ $x->nama_tahun_ajar }}
                                 </p>
                             </td>
+                            <td class="px-4 py-2">
+                                <p class="block font-sans text-sm text-center antialiased font-normal leading-normal">
+                                    {{ $x->siswa_count }}
+                                </p>
+                            </td>
                             <td class="flex items-center justify-center gap-2 px-4 py-2">
                                 <a href="{{ route('tahun_ajar.edit', $x->id) }}">
                                     <x-primary-button>Edit</x-primary-button>
@@ -70,7 +80,8 @@
                                         <div @click.outside="open = false"
                                             class="bg-white/90 backdrop-blur-sm p-6 border border-zinc-300 rounded-xl">
                                             <p class="text-red-600 mb-4 text-center">Yakin ingin menghapus tahun ajar
-                                                {{ $x->nama_tahun_ajar }}?</p>
+                                                {{ $x->nama_tahun_ajar }}?
+                                            </p>
 
                                             <div class="flex items-center justify-center gap-2">
                                                 <x-secondary-button class="w-full"

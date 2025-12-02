@@ -16,17 +16,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
 
     <!-- Styling & scripts -->
-    <style>[x-cloak] { display: none !important; }</style>
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-[geist] bg-boxes text-zinc-900 min-h-screen antialiased p-0">
+<body x-data="{ minimized:false }" x-cloak class="font-[geist] bg-boxes text-zinc-900 min-h-screen antialiased p-0">
     @include('layouts.navigation')
 
     <!-- Page Content -->
-    <div class="space-y-0 pl-72">
+    <div class="space-y-0" :class="minimized ? 'pl-20' : 'pl-20 md:pl-72'" x-cloak x-transition class="transition-all duration-300 ease-in-out">
 
-        <main class="p-7 min-h-[95vh]">
+        <main class="p-4 md:p-7 min-h-[95vh]">
             <div class="flex flex-col gap-5 bg-white p-5 w-full h-fit border border-zinc-300 rounded-2xl">
                 {{ $slot }}
             </div>
@@ -44,7 +48,7 @@
             </span>
         </footer>
 
-    </div>
+        </div>
 
 </body>
 

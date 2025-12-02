@@ -13,7 +13,8 @@ class TahunAjarController extends Controller
      */
     public function index()
     {
-        $tahun_ajar = tahun_ajar::orderBy('kode_tahun_ajar', 'desc')->paginate(10);
+        $tahun_ajar = tahun_ajar::withCount('siswa')->orderBy('kode_tahun_ajar', 'desc')->paginate(10);
+
         return view('tahun_ajar.index', compact('tahun_ajar'));
     }
 
